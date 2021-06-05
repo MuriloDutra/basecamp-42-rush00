@@ -1,9 +1,24 @@
+#include <unistd.h>
+
 void	ft_putchar(char c);
-void	print_column(int column_counter, int x);
-void	print_row(int column_counter, int x);
+void	draw_rectangle_column(int column_counter, int x);
+void	draw_rectangle_line(int column_counter, int x);
+void	draw_rectangle(int x, int y);
 
 void	rush(int x, int y)
 {	
+	if (x > 0 && y > 0)
+	{
+		draw_rectangle(x, y);
+	}
+	else
+	{
+		write(1, "Invalid inputs\n", 20);
+	}
+}
+
+void	draw_rectangle(int x, int y)
+{
 	int	column_counter;
 	int	row_counter;
 
@@ -15,11 +30,11 @@ void	rush(int x, int y)
 		{
 			if (row_counter == 1 || row_counter == y)
 			{
-				print_column(column_counter, x);
+				draw_rectangle_column(column_counter, x);
 			}
 			else
 			{
-				print_row(column_counter, x);
+				draw_rectangle_line(column_counter, x);
 			}
 			column_counter++;
 		}
@@ -28,7 +43,7 @@ void	rush(int x, int y)
 	}
 }
 
-void	print_column(int column_counter, int x)
+void	draw_rectangle_column(int column_counter, int x)
 {
 	if (column_counter == 1)
 	{
@@ -44,7 +59,7 @@ void	print_column(int column_counter, int x)
 	}
 }
 
-void	print_row(int column_counter, int x)
+void	draw_rectangle_line(int column_counter, int x)
 {
 	if (column_counter == 1 || column_counter == x)
 	{
